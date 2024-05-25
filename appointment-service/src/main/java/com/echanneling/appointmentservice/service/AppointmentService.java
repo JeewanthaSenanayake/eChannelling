@@ -26,9 +26,21 @@ public class AppointmentService {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
 	}
 
-	public ResponseEntity<String> addAppointment(Appointment appointment) {
+	/*public ResponseEntity<String> addAppointment(Appointment appointment) {
+		
 		appointmentDao.save(appointment);
         return new ResponseEntity<>("success",HttpStatus.CREATED);
-	}
+	}*/
 
+	public ResponseEntity<String> addAppointment(Appointment appointment) {
+        try {
+        	int maxAppointmentNumber = appointmentDao.findMaxAppointmentNumberByScheduleId(appointment.getScheduleId());
+            appointment.setAppointmentNumber(maxAppointmentNumber + 1);
+            appointmentDao.save(appointment);
+            return new ResponseEntity<>("success", HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

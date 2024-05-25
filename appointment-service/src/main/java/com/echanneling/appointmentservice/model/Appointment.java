@@ -13,6 +13,8 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private Integer scheduleId;
+    private Integer patientId;
+    private Integer appointmentNumber;
 	
     public Integer getId() {
 		return id;
@@ -25,6 +27,18 @@ public class Appointment {
 	}
 	public void setScheduleId(Integer scheduleId) {
 		this.scheduleId = scheduleId; 
+	}
+	public Integer getPatientId() {
+		return patientId;
+	}
+	public void setPatientId(Integer patientId) {
+		this.patientId = patientId;
+	}
+	public Integer getAppointmentNumber() {
+		return appointmentNumber;
+	}
+	public void setAppointmentNumber(Integer appointmentNumber) {
+		this.appointmentNumber = appointmentNumber;
 	}
     
     
