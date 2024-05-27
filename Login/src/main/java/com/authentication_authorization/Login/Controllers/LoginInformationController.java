@@ -2,17 +2,26 @@ package com.authentication_authorization.Login.Controllers;
 
 import com.authentication_authorization.Login.Model.LoginInformation;
 import com.authentication_authorization.Login.Repositories.LoginInformationRepo;
+import com.authentication_authorization.Login.RequestObjects.LoginRequest;
+import com.authentication_authorization.Login.Utils.PasswordUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 @RestController
 public class LoginInformationController {
 
     @Autowired
     LoginInformationRepo repo;
+
+    @Autowired
+    private LoginInformationRepo loginInformationRepo;
 
     @PostMapping("/add_UN_PW")
     public ResponseEntity<String> addLoginInformation(@RequestBody LoginInformation user){
@@ -31,4 +40,31 @@ public class LoginInformationController {
         repo.save(user);
         return ResponseEntity.ok("User Registered successfully");
     }
+
+    @PostMapping("/check_UN_PW")
+    public ResponseEntity<List<String>> authenticateUser(@RequestBody LoginRequest loginRequest) {
+        Optional<LoginInformation> loginInfoOptional = loginInformationRepo.findByUsername(loginRequest.getUsername());
+
+        if (loginInfoOptional.isPresent()) {
+            LoginInformation loginInformation = loginInfoOptional.get();
+//            String salt = loginInformation.getSalt();
+//            String hashedPassword = PasswordUtils.generatePasswordHash(loginRequest.getPassword(), salt);
+
+//            if (hashedPassword.equals(loginInformation.getPassword())) {
+//                return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
+//            }
+            //without hashing
+            if (loginRequest.getPassword().equals(loginInformation.getPassword())) {
+                return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
+            }
+        }
+
+        return ResponseEntity.ok(Collections.emptyList());
+    }
+
+
+
+
+
+
 }
