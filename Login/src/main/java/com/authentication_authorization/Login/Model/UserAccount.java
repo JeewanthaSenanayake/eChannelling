@@ -1,5 +1,6 @@
 package com.authentication_authorization.Login.Model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Table;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.Id;
 
 import java.util.UUID;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Data
 @Entity
@@ -23,7 +26,14 @@ public class UserAccount {
 //    )
 
     private long id;
+
+    @NotNull(message = "Name cannot be null")
+    @Size(min = 1, message = "Name must not be empty")
     private String name;
+
+    @JsonProperty("email_address")
+    @NotNull(message = "Email address cannot be null")
+    @Size(min = 1, message = "Email address must not be empty")
     private String emailAddress;
 
 }
