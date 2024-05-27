@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.eChannelling.eChannelling.repository.LabReportRequestRepository;
@@ -33,6 +34,14 @@ public class LabReportRequestController {
     @GetMapping("/get_request_by_status/{status}")
     public List<LabReportRequest> get_request_by_status(@PathVariable int status) {
         return LabReport.findByStatus(status);
+    }
+
+    @GetMapping("/search")
+    public List<LabReportRequest> getUsersByStatusAndDoctorIdAndPatientId(
+            @RequestParam(required = true) int status,
+            @RequestParam(required = true) String doctorId,
+            @RequestParam(required = true) String patientId) {
+        return LabReport.findByStatusAndDoctorIdAndPatientId(status, doctorId, patientId);
     }
 
 
