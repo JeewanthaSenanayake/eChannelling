@@ -28,12 +28,11 @@ public class UserAccount {
     private long id;
 
     @NotNull(message = "Name cannot be null")
-    @Size(min = 1, message = "Name must not be empty")
+    @Size(min = 2, message = "Name must not be empty")
     private String name;
 
-    @JsonProperty("email_address")
     @NotNull(message = "Email address cannot be null")
-    @Size(min = 1, message = "Email address must not be empty")
+    @Size(min = 3, message = "Email address must not be empty")
     private String emailAddress;
 
 }
