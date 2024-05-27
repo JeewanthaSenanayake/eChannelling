@@ -2,10 +2,13 @@ package com.authentication_authorization.Login.Controllers;
 
 import com.authentication_authorization.Login.Model.UserAccount;
 import com.authentication_authorization.Login.Repositories.UserAccountRepo;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
+import java.util.UUID;
+import java.util.Optional;
 
 @RestController
 public class UserAccountController {
@@ -14,7 +17,7 @@ public class UserAccountController {
     UserAccountRepo repo;
 
     @PostMapping("/addUser")
-    public void adduser(@RequestBody UserAccount user){
+    public ResponseEntity<String> adduser(@RequestBody UserAccount user){
 
         if (user.getName() == null || user.getName().isEmpty()) {
             return ResponseEntity.badRequest().body("Name cannot be null or empty");
@@ -24,6 +27,17 @@ public class UserAccountController {
         }
 
         repo.save(user);
+        return ResponseEntity.ok("User Added Successfully");
+    }
+
+    @GetMapping("/getUser/{id}")
+    public ResponseEntity<UserAccount> getUser(@PathVariable long id){
+        Optional<UserAccount> user = repo.findById(id);
+
+        if(user.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(user.get());
     }
 
 }
