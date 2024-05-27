@@ -1,6 +1,7 @@
 package com.eChannelling.eChannelling.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,11 @@ public class LabReportRequestController {
         return LabReport.findAll();
     }
 
-    
+    @GetMapping("/get_request_by_status/{status}")
+    public List<LabReportRequest> get_request_by_status(@PathVariable int status) {
+        return LabReport.findByStatus(status);
+    }
+
+
 
 }
