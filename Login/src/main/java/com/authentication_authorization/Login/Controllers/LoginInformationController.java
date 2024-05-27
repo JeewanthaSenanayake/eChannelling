@@ -61,7 +61,7 @@ public class LoginInformationController {
 
                 //Authorization
                 if(Objects.equals(role, "admin")){
-                    return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
+                    return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments", "Schedule"));
                 }
                 if(Objects.equals(role, "doctor")){
                     return ResponseEntity.ok(List.of("Lab reports", "appointments", "Schedule"));
