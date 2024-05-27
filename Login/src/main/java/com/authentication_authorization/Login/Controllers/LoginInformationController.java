@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @RestController
@@ -53,12 +54,26 @@ public class LoginInformationController {
 //            if (hashedPassword.equals(loginInformation.getPassword())) {
 //                return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
 //            }
-            //without hashing
+            //without hashing authentication
             if (loginRequest.getPassword().equals(loginInformation.getPassword())) {
-                return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
+
+                String role = loginInformation.getRole();
+
+                //Authorization
+                if(Objects.equals(role, "admin")){
+                    return ResponseEntity.ok(List.of("admin options", "Lab reports", "appointments"));
+                }
+                if(Objects.equals(role, "doctor")){
+                    return ResponseEntity.ok(List.of("Lab reports", "appointments", "Schedule"));
+                }
+                if(Objects.equals(role, "patient")){
+                    return ResponseEntity.ok(List.of("Lab reports", "appointments", "Schedule"));
+                }
+                if(Objects.equals(role, "lab_assistant")){
+                    return ResponseEntity.ok(List.of("Lab reports"));
+                }
             }
         }
-
         return ResponseEntity.ok(Collections.emptyList());
     }
 
