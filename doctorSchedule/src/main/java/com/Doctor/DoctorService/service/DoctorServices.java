@@ -41,4 +41,22 @@ public class DoctorServices {
             return doctordao.findById(id).orElse(null);
         }
 
+		public ResponseEntity<List<DoctorModel>> getSchedulesByLocation(String location) {
+			try {
+	            return new ResponseEntity<>(doctordao.findByLocation(location),HttpStatus.OK);
+	        }catch (Exception e){
+	            e.printStackTrace();
+	        }
+	        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+		}
+
+		public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(Integer doctorId) {
+			try {
+	            return new ResponseEntity<>(doctordao.findByDoctorId(doctorId),HttpStatus.OK);
+	        }catch (Exception e){
+	            e.printStackTrace();
+	        }
+	        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+		} 
+
 }

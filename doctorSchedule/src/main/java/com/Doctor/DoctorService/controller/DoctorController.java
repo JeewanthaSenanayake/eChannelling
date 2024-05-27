@@ -31,16 +31,6 @@ public class DoctorController {
         return  doctorservices.addSchedule(doctormodel);
     }
     
-    /*@GetMapping("/{id}")
-    public ResponseEntity<DoctorModel> getScheduleById(@PathVariable Integer id) {
-    	DoctorModel schedule = doctorservices.getScheduleById(id);
-        if (schedule != null) {
-            return new ResponseEntity<>(schedule, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }*/
-    
     @GetMapping("/{id}")
     public ResponseEntity<Void> getScheduleById(@PathVariable Integer id) {
         //Optional<DoctorModel> schedule = scheduleRepository.findById(id);
@@ -51,4 +41,24 @@ public class DoctorController {
             return ResponseEntity.notFound().build();
         }
     }
+    
+    @GetMapping("location/{location}")
+    public ResponseEntity<List<DoctorModel>> getSchedulesByLocation(@PathVariable String location){
+        return doctorservices.getSchedulesByLocation(location);
+    }
+    
+    @GetMapping("doctorId/{doctorId}")
+    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(@PathVariable Integer doctorId){
+        return doctorservices.getSchedulesByDoctorId(doctorId);
+    }
+    
+    /*@GetMapping("/{id}")
+    public ResponseEntity<DoctorModel> getScheduleById(@PathVariable Integer id) {
+    	DoctorModel schedule = doctorservices.getScheduleById(id);
+        if (schedule != null) {
+            return new ResponseEntity<>(schedule, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }*/
 }

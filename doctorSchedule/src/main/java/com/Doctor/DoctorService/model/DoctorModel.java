@@ -17,7 +17,7 @@ public class DoctorModel {
     private Integer scheduleId;
     private Integer doctorId;
     private String location;
-    private String address;
+    //private String address;
     private LocalDate practiceDate;
     private LocalTime practiceTime;
     
@@ -39,12 +39,12 @@ public class DoctorModel {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	public String getAddress() {
+	/*public String getAddress() {
 		return address;
 	}
 	public void setAddress(String address) {
 		this.address = address;
-	}
+	}*/
 	public LocalDate getPracticeDate() {
 		return practiceDate;
 	}
