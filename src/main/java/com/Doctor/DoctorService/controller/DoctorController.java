@@ -52,15 +52,15 @@ public class DoctorController {
         return doctorservices.getSchedulesByDoctorId(doctorId);
     }
 
-    // @GetMapping("/{doctorId}/appointments")
-    // public ResponseEntity<List<AppointmentModel>> getAppointmentsByDoctorId(@PathVariable Integer doctorId){
-    //     return doctorservices.getAppointmentsByDoctorId(doctorId);
-    // }
+     @GetMapping("/{doctorId}/appointments")
+     public ResponseEntity<List<AppointmentModel>> getAppointmentsByDoctorId(@PathVariable Integer doctorId){
+         return doctorservices.getAppointmentsByDoctorId(doctorId);
+     }
 
-    // @GetMapping("/{doctorId}/labReports")
-    // public ResponseEntity<List<LabReportModel>> getLabReportsByDoctorId(@PathVariable Integer doctorId){
-    //     return doctorservices.getLabReportsByDoctorId(doctorId);
-    // }
+     @GetMapping("/{doctorId}/labReports")
+     public ResponseEntity<List<LabReportModel>> getLabReportsByDoctorId(@PathVariable Integer doctorId){
+         return doctorservices.getLabReportsByDoctorId(doctorId);
+     }
 
     @PutMapping("/update/{doctorId}")
     public ResponseEntity<String> updateSchedule(@PathVariable Integer doctorId, @RequestBody DoctorModel doctormodel) {
