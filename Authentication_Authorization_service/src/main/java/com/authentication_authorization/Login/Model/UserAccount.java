@@ -1,8 +1,8 @@
 package com.authentication_authorization.Login.Model;
 
+import java.util.UUID;
+
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import lombok.Data;
@@ -13,9 +13,9 @@ import lombok.Data;
 public class UserAccount {
 
     @Id
-    @GeneratedValue(strategy  = GenerationType.AUTO)
-    private long id;
+    private UUID id;
 
     private String name;
+    private String nicNumber;
     private String emailAddress;
 }

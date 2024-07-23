@@ -1,5 +1,7 @@
 package com.authentication_authorization.Login.Model;
 
+import java.util.UUID;
+
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -8,13 +10,11 @@ import lombok.Data;
 @Table(name = "LoginInformation")
 public class LoginInformation {
 
-
     @Id
-    private long id;
+    private UUID id;
 
     private String username;
-    private String password; // Store the hashed password
-    private String salt;
+    private String password; 
     private String role;
 
     @OneToOne
