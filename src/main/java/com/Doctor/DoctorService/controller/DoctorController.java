@@ -25,8 +25,50 @@ public class DoctorController {
         return doctorservices.getAllSchedules();
     }
 
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<String> addSchedule(@RequestBody DoctorModel doctormodel){
         return  doctorservices.addSchedule(doctormodel);
+    }
+
+    @GetMapping("/DocById/{id}")
+    public ResponseEntity<Void> getScheduleById(@PathVariable Integer id) {
+        //Optional<DoctorModel> schedule = scheduleRepository.findById(id);
+    	DoctorModel schedule = doctorservices.getScheduleById(id);
+        if (schedule != null) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @GetMapping("location/{location}")
+    public ResponseEntity<List<DoctorModel>> getSchedulesByLocation(@PathVariable String location){
+        return doctorservices.getSchedulesByLocation(location);
+
+    }
+    
+    @GetMapping("doctorId/{doctorId}")
+    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(@PathVariable Integer doctorId){
+        return doctorservices.getSchedulesByDoctorId(doctorId);
+    }
+
+    // @GetMapping("/{doctorId}/appointments")
+    // public ResponseEntity<List<AppointmentModel>> getAppointmentsByDoctorId(@PathVariable Integer doctorId){
+    //     return doctorservices.getAppointmentsByDoctorId(doctorId);
+    // }
+
+    // @GetMapping("/{doctorId}/labReports")
+    // public ResponseEntity<List<LabReportModel>> getLabReportsByDoctorId(@PathVariable Integer doctorId){
+    //     return doctorservices.getLabReportsByDoctorId(doctorId);
+    // }
+
+    @PutMapping("/update/{doctorId}")
+    public ResponseEntity<String> updateSchedule(@PathVariable Integer doctorId, @RequestBody DoctorModel doctormodel) {
+        return doctorservices.updateSchedule(doctorId, doctormodel);
+    }
+
+    @DeleteMapping("/delete/{doctorId}")
+    public ResponseEntity<String> deleteSchedule(@PathVariable Integer doctorId) {
+        return doctorservices.deleteSchedule(doctorId);
     }
 }
