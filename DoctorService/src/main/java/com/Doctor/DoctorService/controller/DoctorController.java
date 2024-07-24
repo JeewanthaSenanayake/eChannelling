@@ -53,7 +53,7 @@ public class DoctorController {
         return doctorservices.getSchedulesByDoctorId(doctorId);
     }
 
-    @GetMapping("/{doctorId}/appointments/today")
+    /*@GetMapping("/{doctorId}/appointments/today")
     public ResponseEntity<Map<String, Object>> getAppointmentsSummaryForToday(@PathVariable Integer doctorId) {
         return doctorservices.getAppointmentsSummaryForToday(doctorId);
     }
@@ -64,7 +64,7 @@ public class DoctorController {
         @PathVariable Integer patientId) {
         
         return doctorservices.getLabReportsByDoctorAndPatientId(doctorId, patientId);
-    }
+    }*/
 
     @PutMapping("/update/{doctorId}")
     public ResponseEntity<String> updateSchedule(@PathVariable Integer doctorId, @RequestBody DoctorModel doctormodel) {

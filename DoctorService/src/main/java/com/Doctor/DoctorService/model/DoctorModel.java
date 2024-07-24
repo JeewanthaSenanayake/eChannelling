@@ -26,7 +26,55 @@ public class DoctorModel {
     private LocalDate practiceDate;
     private LocalTime practiceTime;
     
-    public void setId(Integer id) {
+    public Integer getScheduleId() {
+		return scheduleId;
+	}
+
+	public void setScheduleId(Integer scheduleId) {
+		this.scheduleId = scheduleId;
+	}
+
+	public Integer getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(Integer doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public LocalDate getPracticeDate() {
+		return practiceDate;
+	}
+
+	public void setPracticeDate(LocalDate practiceDate) {
+		this.practiceDate = practiceDate;
+	}
+
+	public LocalTime getPracticeTime() {
+		return practiceTime;
+	}
+
+	public void setPracticeTime(LocalTime practiceTime) {
+		this.practiceTime = practiceTime;
+	}
+
+	public void setId(Integer id) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'setId'");
     }

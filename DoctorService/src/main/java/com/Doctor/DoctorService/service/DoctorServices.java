@@ -79,7 +79,7 @@ public class DoctorServices {
     }
 
 
-    public ResponseEntity<Map<String, Object>> getAppointmentsSummaryForToday(Integer doctorId) {
+    /*public ResponseEntity<Map<String, Object>> getAppointmentsSummaryForToday(Integer doctorId) {
         try {
             // Assuming there's an endpoint in the appointment service to get today's appointments
             String url = UriComponentsBuilder.fromHttpUrl(APPOINTMENT_SERVICE_URL)
@@ -121,6 +121,6 @@ public class DoctorServices {
         e.printStackTrace();
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
-}
+	}*/
 
 }
