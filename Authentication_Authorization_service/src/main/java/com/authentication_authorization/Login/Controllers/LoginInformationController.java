@@ -37,10 +37,11 @@ public class LoginInformationController {
             if (loginRequest.getPassword().equals(loginInformation.getPassword())) {
 
                 String role = loginInformation.getRole();
+                user.setRole(role);
                 
                 //Authorization
                 if(Objects.equals(role, "admin")){
-                    user.setUserRoles(List.of("Admin_options", "Lab_reports", "Appointments", "Schedule"));
+                    user.setUserRoles(List.of("Register_user", "Lab_reports", "Appointments", "Schedule"));
                     return ResponseEntity.ok(user);
                 }
                 if(Objects.equals(role, "doctor") || Objects.equals(role, "patient")){

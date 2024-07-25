@@ -1,18 +1,18 @@
 package com.Doctor.DoctorService.service;
 
 import com.Doctor.DoctorService.dao.DoctorDao;
-import com.Doctor.DoctorService.model.AppointmentSummaryModel;
+// import com.Doctor.DoctorService.model.AppointmentSummaryModel;
 import com.Doctor.DoctorService.model.DoctorModel;
-import com.Doctor.DoctorService.model.LabReportModel;
+// import com.Doctor.DoctorService.model.LabReportModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.util.UriComponentsBuilder;
-import org.springframework.format.annotation.DateTimeFormat;
-import java.util.Map;
-import java.time.LocalDate;
+// import org.springframework.web.util.UriComponentsBuilder;
+// import org.springframework.format.annotation.DateTimeFormat;
+// import java.util.Map;
+// import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +50,7 @@ public class DoctorServices {
         return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(Integer doctorId) {
+    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(String doctorId) {
         try {
             return new ResponseEntity<>(doctordao.findByDoctorId(doctorId),HttpStatus.OK);
         }catch (Exception e){

@@ -8,7 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DoctorDao extends JpaRepository<DoctorModel, Integer> {
     List<DoctorModel> findByLocation(String location);
-	List<DoctorModel> findByDoctorId(Integer doctorId);
+	List<DoctorModel> findByDoctorId(String doctorId);
 }
-
-

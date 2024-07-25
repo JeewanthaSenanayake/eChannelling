@@ -20,7 +20,7 @@ public class DoctorModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer scheduleId;
-    private Integer doctorId;
+    private String doctorId;
     private String location;
     private String address;
     private LocalDate practiceDate;
@@ -34,11 +34,11 @@ public class DoctorModel {
 		this.scheduleId = scheduleId;
 	}
 
-	public Integer getDoctorId() {
+	public String getDoctorId() {
 		return doctorId;
 	}
 
-	public void setDoctorId(Integer doctorId) {
+	public void setDoctorId(String doctorId) {
 		this.doctorId = doctorId;
 	}
 
@@ -76,7 +76,8 @@ public class DoctorModel {
 
 	public void setId(Integer id) {
         // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setId'");
+		this.scheduleId = id;
+        // throw new UnsupportedOperationException("Unimplemented method 'setId'");
     }
 
 }

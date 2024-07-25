@@ -1,12 +1,12 @@
 package com.Doctor.DoctorService.controller;
 
 import com.Doctor.DoctorService.model.DoctorModel;
-import com.Doctor.DoctorService.model.LabReportModel;
+// import com.Doctor.DoctorService.model.LabReportModel;
 import com.Doctor.DoctorService.service.DoctorServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.Map;
+// import java.util.Map;
 import java.util.List;
 
 @RestController
@@ -32,14 +32,15 @@ public class DoctorController {
     }
 
     @GetMapping("/DocById/{id}")
-    public ResponseEntity<Void> getScheduleById(@PathVariable Integer id) {
+    public DoctorModel getScheduleById(@PathVariable Integer id) {
         //Optional<DoctorModel> schedule = scheduleRepository.findById(id);
-    	DoctorModel schedule = doctorservices.getScheduleById(id);
-        if (schedule != null) {
-            return ResponseEntity.ok().build();
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    	return doctorservices.getScheduleById(id);
+        // if (schedule != null) {
+        //     // return ResponseEntity.ok().build();
+        //     return schedule
+        // } else {
+        //     return ResponseEntity.notFound().build();
+        // }
     }
     
     @GetMapping("location/{location}")
@@ -49,7 +50,7 @@ public class DoctorController {
     }
     
     @GetMapping("doctorId/{doctorId}")
-    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(@PathVariable Integer doctorId){
+    public ResponseEntity<List<DoctorModel>> getSchedulesByDoctorId(@PathVariable String doctorId){
         return doctorservices.getSchedulesByDoctorId(doctorId);
     }
 

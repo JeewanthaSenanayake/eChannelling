@@ -37,9 +37,9 @@ public class AppointmentService {
 
 	public ResponseEntity<String> addAppointment(Appointment appointment) {
         try {
-        	if (!doctorScheduleServiceClient.isScheduleIdValid(appointment.getScheduleId())) {
+        	/*if (!doctorScheduleServiceClient.isScheduleIdValid(appointment.getScheduleId())) {
                 throw new IllegalArgumentException("Invalid scheduleId: " + appointment.getScheduleId());
-            }
+            }*/
         	int maxAppointmentNumber = appointmentDao.findMaxAppointmentNumberByScheduleId(appointment.getScheduleId());
             appointment.setAppointmentNumber(maxAppointmentNumber + 1);
             appointmentDao.save(appointment);
@@ -49,4 +49,14 @@ public class AppointmentService {
             return new ResponseEntity<>("error", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+	
+	public ResponseEntity<List<Appointment>> getAppointmentsByPatientId(Integer patientId) {
+        try {
+            return new ResponseEntity<>(appointmentDao.findByPatientId(patientId),HttpStatus.OK);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return new ResponseEntity<>(new ArrayList<>(), HttpStatus.BAD_REQUEST);
+    } 
+
 }

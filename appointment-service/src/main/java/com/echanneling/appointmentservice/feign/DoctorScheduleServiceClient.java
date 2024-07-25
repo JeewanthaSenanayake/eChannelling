@@ -24,7 +24,7 @@ public class DoctorScheduleServiceClient {
     public boolean isScheduleIdValid(Integer scheduleId) {
         try {
             ResponseEntity<Void> response = restTemplate.getForEntity(
-                    doctorScheduleServiceUrl + "/doctor/" + scheduleId, Void.class);
+                    doctorScheduleServiceUrl + "/doctor/DocById" + scheduleId, Void.class);
             return response.getStatusCode() == HttpStatus.OK;
         } catch (HttpClientErrorException e) {
             return false;

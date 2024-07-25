@@ -11,7 +11,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 @RepositoryRestResource
 public interface UserAccountRepo extends JpaRepository<UserAccount, UUID> {
 
-    // Optional<UserAccount> findById(long id);
+    Optional<UserAccount> findById(UUID id);
     Optional<UserAccount> findByName(String name); 
     Optional<UserAccount> findByNicNumber(String nicNumber);
 }
