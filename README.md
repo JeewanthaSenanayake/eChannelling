@@ -35,36 +35,31 @@
 1. Authentication Service: Manages user authentication and authorization (User login and registration.) All the other services communicate with this service to verify user identities and roles as patient, doctor, lab assistant, or admin.
 
    - REST API Endpoints:
+     - POST /authenticate_user: Authenticates a user based on their username and password.
+       - Input parameters - json
+         
+     - POST /register: Registers a new user account with the provided details.
+       - Input parameters - json
 
-     - POST/addUser: Create a User Account in the system with a user Id
+     - GET /getUserByNic/{nicNumber}: Retrieves a user account based on the provided NIC number.
+       - Input parameters - nicNumber
 
-       - Input parameters - Users full name, email address
-
-     - GET /getUser/{id}: Fetch User’s Account Information
-
-       - Input parameters - user Id
-
-     - POST/add_UN_PW: Create Login Information Record with Username & Password of User referenced by user Id from User Accounts
-
-       - Input parameters - user’s username and password, role
-
-     - POST/Check_UN_PW: Authenticate and Authorize user when logging in to the system
-       - Input parameters - user’s username and password
+     - GET /getUserById/{id}: Retrieves a user account based on the provided user ID.
+       - Input parameters - id
 
 2. Appointment Service: Handles appointment booking and management. Interacts with Doctor Schedule Service for fetching doctor-specific appointments.
 
    - REST API Endpoints:
 
-     - GET /appointment/allAppointments: Fetches all appointments.
+      - GET /appointment/allAppointments: Fetches all appointments. 
+        - Input parameters - none 
 
-       - Input parameters - none
+      - POST /appointment/add: Makes an appointment 
+        - Input parameters - json
 
-     - POST /appointment/add: Makes an appointment
+      - GET /appointment/getpatientappointment/{patientId} : Retrieve a patient’s appointment using patient ID.
+        - Input parameters - none 
 
-       - Input parameters - json
-
-     - GET /appointment/getpatientappointment/{patientId}
-       - Input parameters - none
 
 3. Doctor Schedule Service: Manages doctor schedules and information. Each doctor can see the number of patients that made an appointment at each location for the day. Doctors can view and update the schedules also. Doctor can also obtain the lab reports of his/her patient upon request. Communicates with Appointment Service to fetch appointments and Lab report Service for lab reports.
 
@@ -84,6 +79,13 @@
 
      - POST /doctorservice/doctor/add: Add a schedule to a specific doctor
        - Input parameters - json
+
+     - PUT /doctor/update/{doctorId}: Updates a doctor's schedule.
+       - Input parameters - json, doctorId
+
+     - DELETE /doctor/delete/{doctorId}: Deletes a doctor's schedule.
+       - Input parameters - doctorId 
+
 
 4. Lab Report Service: Manages lab reports and related data. This provides APIs for the Doctor Schedule Service to access lab reports.
 
@@ -109,6 +111,16 @@
 
      - PUT /reportservice/lab_reports/updateUserStatus/{id}/{status}: Update status of the lab report
        - Input parameters - status, id
+      
+     - POST/lab_reports/pdf/uploadPdf:  Upload a lab report as a pdf.
+       - Input parameters - file, report id
+
+     - GET /lab_reports/pdf/getPdf/{id}: Retrieves a PDF document by its report ID.
+       - Input parameters - report ID
+
+     - GET /lab_reports/pdf/get_all_reports: Fetches all lab report PDFs from the database.
+       - Input parameters - None
+
 
 ### Discovery Server:
 
